@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'App\Http\Controllers\PagesController@index');
-Route::get('/hexavara', 'App\Http\Controllers\PagesController@hexavara');
+Route::get('/hexavara', 'App\Http\Controllers\HexavaraController@index');
