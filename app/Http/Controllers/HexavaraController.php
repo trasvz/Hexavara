@@ -14,7 +14,8 @@ class HexavaraController extends Controller
      */
     public function index()
     {
-        $coba = DB::table('tagihan')->get();
+        // $coba = DB::table('tagihan')->get();
+        $coba = \App\Models\modeltagihan::all();
         return view('Hexavara/index', ['coba'=>$coba]);
     }
 
