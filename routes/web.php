@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+// use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/hexavara', function () {
-    return view('hexavara');
-});
+Route::get('/', 'App\Http\Controllers\PagesController@index');
+Route::get('/hexavara', 'App\Http\Controllers\PagesController@hexavara');
