@@ -3,31 +3,18 @@
 @section('container')
 <div class="container">
     <div class="row">
-        <div class="col-10">
-            <h1 class="mt-2">TeleRakus</h1>
-            <table class="table">
-                <thead class="thead">
-                    <tr class="table-dark">
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">bayar</th>
-                        <th scope="col">aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($coba as $coba)
-                    <tr>
-                        <th scope="row">{{ $coba->id }}</th>
-                        <td>{{ $coba->name }}</td>
-                        <td>{{ $coba->bayar }}</td>
-                        <td>
-                            <a href="" class="badge bg-success">edit</a>
-                            <a href="" class="badge bg-danger">delete</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <div class="col-6">
+            <h1 class="mt-3">TeleRakus</h1>
+
+            <ul class="list-group">
+                @foreach($coba as $coba)
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ $coba->name }}
+                    <a href="/hexavara/{{$coba->id}}" class="badge bg-info">details</a>
+                </li>
+                @endforeach
+            </ul>
+            
         </div>
     </div>
 </div>

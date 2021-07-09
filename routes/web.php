@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\PagesController@index');
 Route::get('/hexavara', 'App\Http\Controllers\HexavaraController@index');
+Route::get('/hexavara/{modeltagihan}', 'App\Http\Controllers\HexavaraController@show');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\modeltagihan;
 
 class HexavaraController extends Controller
 {
@@ -15,8 +16,8 @@ class HexavaraController extends Controller
     public function index()
     {
         // $coba = DB::table('tagihan')->get();
-        $coba = \App\Models\modeltagihan::all();
-        return view('Hexavara/index', ['coba'=>$coba]);
+        $modeltagihan = modeltagihan::all();
+        return view('Hexavara/index', ['coba'=>$modeltagihan]);
     }
 
     /**
@@ -46,9 +47,9 @@ class HexavaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(modeltagihan $modeltagihan)
     {
-        //
+        return view('hexavara/show', compact('modeltagihan'));
     }
 
     /**

@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class modeltagihan extends Model
 {
     use HasFactory;
-    protected $table = 'tagihan';
+    protected $table = 'customer_detail';
+    protected $primaryKey = 'id';
 }
