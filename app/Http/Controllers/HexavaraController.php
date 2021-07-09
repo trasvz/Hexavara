@@ -15,7 +15,6 @@ class HexavaraController extends Controller
      */
     public function index()
     {
-        // $coba = DB::table('tagihan')->get();
         $modeltagihan = modeltagihan::all();
         return view('Hexavara/index', ['coba'=>$modeltagihan]);
     }
@@ -27,7 +26,7 @@ class HexavaraController extends Controller
      */
     public function create()
     {
-        //
+        return view('Hexavara/create');
     }
 
     /**
@@ -38,7 +37,13 @@ class HexavaraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+
+        modeltagihan::create($request->all());
+        return redirect('/hexavara')->with('status', 'Data Berhasil Ditambahkan!');
     }
 
     /**
@@ -49,7 +54,16 @@ class HexavaraController extends Controller
      */
     public function show(modeltagihan $modeltagihan)
     {
-        return view('hexavara/show', compact('modeltagihan'));
+        $id = $modeltagihan->id;
+        $cards = DB::select("
+        SELECT call_record.incoming_number, call_record.outgoing_number, call_record.duration, call_record.dialed_on 
+        FROM customer_detail INNER JOIN call_record 
+        ON call_record.incoming_number = customer_detail.phone OR call_record.outgoing_number = customer_detail.phone 
+        WHERE customer_detail.id = $id
+        ORDER BY call_record.dialed_on;
+        ");
+
+        return view('hexavara/show', ['modeltagihan'=>$modeltagihan], ['cards'=>$cards]);
     }
 
     /**
@@ -58,9 +72,9 @@ class HexavaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(modeltagihan $modeltagihan)
     {
-        //
+        return view('hexavara/edit', compact('modeltagihan'));
     }
 
     /**
@@ -70,9 +84,19 @@ class HexavaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, modeltagihan $modeltagihan)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+        ]);
+
+        modeltagihan::where('id', $modeltagihan->id)
+            ->update([
+                'name' => $request->name,
+                'phone' => $request->phone
+            ]);
+        return redirect('/hexavara')->with('status', 'Data Berhasil Diubah!');
     }
 
     /**
@@ -81,8 +105,9 @@ class HexavaraController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(modeltagihan $modeltagihan)
     {
-        //
+        modeltagihan::destroy($modeltagihan->id);
+        return redirect('/hexavara')->with('status', 'Data Berhasil Dihapus!');
     }
 }

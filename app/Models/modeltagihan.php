@@ -10,4 +10,5 @@ class modeltagihan extends Model
     use HasFactory;
     protected $table = 'customer_detail';
     protected $primaryKey = 'id';
+    protected $fillable = ['name', 'phone'];
 }

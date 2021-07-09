@@ -16,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\PagesController@index');
 Route::get('/hexavara', 'App\Http\Controllers\HexavaraController@index');
+Route::get('/hexavara/create', 'App\Http\Controllers\HexavaraController@create');
 Route::get('/hexavara/{modeltagihan}', 'App\Http\Controllers\HexavaraController@show');
+Route::post('/hexavara', 'App\Http\Controllers\HexavaraController@store');
+Route::delete('/hexavara/{modeltagihan}', 'App\Http\Controllers\HexavaraController@destroy');
+Route::get('/hexavara/{modeltagihan}/edit', 'App\Http\Controllers\HexavaraController@edit');
+Route::patch('/hexavara/{modeltagihan}', 'App\Http\Controllers\HexavaraController@update');
